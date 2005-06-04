@@ -37,7 +37,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Microsoft Arial Unicode True Type font.
 %if ! %{with license_agreement}
 License issues made us not to include inherent files into this package
-by default (it probably requires Windows license). If you want to
+by default (it probably requires MS Office license). If you want to
 create full working package please build it with one of the following
 command:
 
@@ -49,7 +49,7 @@ command:
 Font True Type Arial Unicode firmy Microsoft.
 %if ! %{with license_agreement}
 Kwestie licencji zmusi³y nas do niedo³±czania do tego pakietu istotnych
-plików (prawdopodobnie wymaga licencji na Windows). Je¶li chcesz stworzyæ
+plików (prawdopodobnie wymaga licencji na MS Office). Je¶li chcesz stworzyæ
 w pe³ni funkcjonalny pakiet, zbuduj go za pomoc± polecenia:
 
 %{base_name}.install --with license_agreement %{_datadir}/%{base_name}/%{base_name}.spec
