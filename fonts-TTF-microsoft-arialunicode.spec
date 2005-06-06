@@ -66,48 +66,48 @@ rm -rf $RPM_BUILD_ROOT
 %if ! %{with license_agreement}
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{base_name}}
 
-cat <<EOF >$RPM_BUILD_ROOT%{_bindir}/%{base_name}.install
+cat <<'EOF' >$RPM_BUILD_ROOT%{_bindir}/%{base_name}.install
 #!/bin/sh
-if [ "\$1" = "--with" -a "\$2" = "license_agreement" ]
+if [ "$1" = "--with" -a "$2" = "license_agreement" ]
 then
-	TMPDIR=\`rpm --eval "%%{tmpdir}"\`; export TMPDIR
-	SPECDIR=\`rpm --eval "%%{_specdir}"\`; export SPECDIR
-	SRPMDIR=\`rpm --eval "%%{_srcrpmdir}"\`; export SRPMDIR
-	SOURCEDIR=\`rpm --eval "%%{_sourcedir}"\`; export SOURCEDIR
-	BUILDDIR=\`rpm --eval "%%{_builddir}"\`; export BUILDDIR
-	RPMDIR=\`rpm --eval "%%{_rpmdir}"\`; export RPMDIR
+	TMPDIR=`rpm --eval "%%{tmpdir}"`; export TMPDIR
+	SPECDIR=`rpm --eval "%%{_specdir}"`; export SPECDIR
+	SRPMDIR=`rpm --eval "%%{_srcrpmdir}"`; export SRPMDIR
+	SOURCEDIR=`rpm --eval "%%{_sourcedir}"`; export SOURCEDIR
+	BUILDDIR=`rpm --eval "%%{_builddir}"`; export BUILDDIR
+	RPMDIR=`rpm --eval "%%{_rpmdir}"`; export RPMDIR
 	BACKUP_SPEC=0
-	mkdir -p \$TMPDIR \$SPECDIR \$SRPMDIR \$RPMDIR \$SRPMDIR \$SOURCEDIR \$BUILDDIR
-	if [ -f \$SPECDIR/%{base_name}.spec ]; then
+	mkdir -p $TMPDIR $SPECDIR $SRPMDIR $RPMDIR $SRPMDIR $SOURCEDIR $BUILDDIR
+	if [ -f $SPECDIR/%{base_name}.spec ]; then
 		BACKUP_SPEC=1
-		mv -f \$SPECDIR/%{base_name}.spec \$SPECDIR/%{base_name}.spec.prev
+		mv -f $SPECDIR/%{base_name}.spec $SPECDIR/%{base_name}.spec.prev
 	fi
-	if echo "\$3" | grep '\.src\.rpm$' >/dev/null; then
-		( cd \$SRPMDIR
-		if echo "\$3" | grep '://' >/dev/null; then
-			wget --passive-ftp -t0 "\$3"
+	if echo "$3" | grep '\.src\.rpm$' >/dev/null; then
+		( cd $SRPMDIR
+		if echo "$3" | grep '://' >/dev/null; then
+			wget --passive-ftp -t0 "$3"
 		else
 			cp -f "\$3" .
 		fi
-		rpm2cpio \`basename "\$3"\` | ( cd \$TMPDIR; cpio -i %{base_name}.spec ) )
-		if ! cp -i \$TMPDIR/%{base_name}.spec \$SPECDIR/%{base_name}.spec; then
+		rpm2cpio `basename "$3"` | ( cd $TMPDIR; cpio -i %{base_name}.spec ) )
+		if ! cp -i $TMPDIR/%{base_name}.spec $SPECDIR/%{base_name}.spec; then
 			exit 1
 		fi
 	else
-		if ! cp -i "\$3" \$SPECDIR; then
+		if ! cp -i "\$3" $SPECDIR; then
 			exit 1
 		fi
 	fi
-	( cd \$SPECDIR
+	( cd $SPECDIR
 	%{_bindir}/builder -nc -ncs --with license_agreement --opts --target=%{_target_cpu} %{base_name}.spec
-	if [ "\$?" -ne 0 ]; then
+	if [ "$?" -ne 0 ]; then
 		exit 2
 	fi
 	RPMNAME=%{base_name}-%{version}-%{release}wla.noarch.rpm
-	rpm -U \$RPMDIR/\$RPMNAME || \
-		echo -e Install manually the file:\\\n   \$RPMDIR/\$RPMNAME )
-	if [ "\$BACKUP_SPEC" -eq 1 ]; then
-		mv -f \$SPECDIR/%{base_name}.spec.prev \$SPECDIR/%{base_name}.spec
+	rpm -U $RPMDIR/$RPMNAME || \
+		echo -e Install manually the file:\\\n   $RPMDIR/$RPMNAME )
+	if [ "$BACKUP_SPEC" -eq 1 ]; then
+		mv -f $SPECDIR/%{base_name}.spec.prev $SPECDIR/%{base_name}.spec
 	fi
 else
 	cat %{_datadir}/%{base_name}/Microsot-EULA.txt
