@@ -87,14 +87,14 @@ then
 		if echo "$3" | grep '://' >/dev/null; then
 			wget --passive-ftp -t0 "$3"
 		else
-			cp -f "\$3" .
+			cp -f "$3" .
 		fi
 		rpm2cpio `basename "$3"` | ( cd $TMPDIR; cpio -i %{base_name}.spec ) )
 		if ! cp -i $TMPDIR/%{base_name}.spec $SPECDIR/%{base_name}.spec; then
 			exit 1
 		fi
 	else
-		if ! cp -i "\$3" $SPECDIR; then
+		if ! cp -i "$3" $SPECDIR; then
 			exit 1
 		fi
 	fi
@@ -105,7 +105,7 @@ then
 	fi
 	RPMNAME=%{base_name}-%{version}-%{release}wla.noarch.rpm
 	rpm -U $RPMDIR/$RPMNAME || \
-		echo -e Install manually the file:\\\n   $RPMDIR/$RPMNAME )
+		echo -e "Install manually the file:\n   $RPMDIR/$RPMNAME" )
 	if [ "$BACKUP_SPEC" -eq 1 ]; then
 		mv -f $SPECDIR/%{base_name}.spec.prev $SPECDIR/%{base_name}.spec
 	fi
@@ -116,7 +116,7 @@ License issues made us not to include inherent files into this package
 by default (it probably requires Windows license). If you want to
 create full working package please build it with the following command:
 
-\$0 --with license_agreement %{_datadir}/%{base_name}/%{base_name}.spec
+$0 --with license_agreement %{_datadir}/%{base_name}/%{base_name}.spec
 "
 fi
 EOF
