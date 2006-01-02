@@ -91,7 +91,7 @@ fontpostinst TTF
 fontpostinst TTF
 
 %else
-%pre
+%post
 echo "
 License issues made us not to include inherent files into this package
 by default (it probably requires Windows license). If you want to
