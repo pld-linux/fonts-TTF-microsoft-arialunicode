@@ -35,7 +35,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Microsoft Arial Unicode True Type font.
-%if %{without license_agreement}
+%if !%{with license_agreement}
 License issues made us not to include inherent files into this package
 by default (it probably requires MS Office license). If you want to
 create full working package please build it with one of the following
@@ -46,7 +46,7 @@ command:
 
 %description -l pl
 Font True Type Arial Unicode firmy Microsoft.
-%if %{without license_agreement}
+%if !%{with license_agreement}
 Kwestie licencji zmusi³y nas do niedo³±czania do tego pakietu istotnych
 plików (prawdopodobnie wymaga licencji na MS Office). Je¶li chcesz stworzyæ
 w pe³ni funkcjonalny pakiet, zbuduj go za pomoc± polecenia:
@@ -62,7 +62,7 @@ w pe³ni funkcjonalny pakiet, zbuduj go za pomoc± polecenia:
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%if %{without license_agreement}
+%if !%{with license_agreement}
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/%{base_name}}
 
 sed -e '
