@@ -3,7 +3,7 @@
 %bcond_with	license_agreement	# generates package (may require MS Office license?)
 #
 Summary:	Microsoft Arial Unicode True Type font
-Summary(pl):	Font True Type Arial Unicode firmy Microsoft
+Summary(pl.UTF-8):   Font True Type Arial Unicode firmy Microsoft
 %define		base_name		fonts-TTF-Microsoft-ArialUnicode
 %if %{with license_agreement}
 Name:		%{base_name}
@@ -44,12 +44,12 @@ command:
 %{base_name}.install --with license_agreement %{_datadir}/%{base_name}/%{base_name}.spec
 %endif
 
-%description -l pl
+%description -l pl.UTF-8
 Font True Type Arial Unicode firmy Microsoft.
 %if !%{with license_agreement}
-Kwestie licencji zmusi³y nas do niedo³±czania do tego pakietu istotnych
-plików (prawdopodobnie wymaga licencji na MS Office). Je¶li chcesz stworzyæ
-w pe³ni funkcjonalny pakiet, zbuduj go za pomoc± polecenia:
+Kwestie licencji zmusiÅ‚y nas do niedoÅ‚Ä…czania do tego pakietu istotnych
+plikÃ³w (prawdopodobnie wymaga licencji na MS Office). JeÅ›li chcesz stworzyÄ‡
+w peÅ‚ni funkcjonalny pakiet, zbuduj go za pomocÄ… polecenia:
 
 %{base_name}.install --with license_agreement %{_datadir}/%{base_name}/%{base_name}.spec
 %endif
