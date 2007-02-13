@@ -3,7 +3,7 @@
 %bcond_with	license_agreement	# generates package (may require MS Office license?)
 #
 Summary:	Microsoft Arial Unicode True Type font
-Summary(pl.UTF-8):   Font True Type Arial Unicode firmy Microsoft
+Summary(pl.UTF-8):	Font True Type Arial Unicode firmy Microsoft
 %define		base_name		fonts-TTF-Microsoft-ArialUnicode
 %if %{with license_agreement}
 Name:		%{base_name}
