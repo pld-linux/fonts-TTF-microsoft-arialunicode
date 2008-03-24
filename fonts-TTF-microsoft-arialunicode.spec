@@ -2,8 +2,8 @@
 # Conditional build:
 %bcond_with	license_agreement	# generates package (may require MS Office license?)
 #
-Summary:	Microsoft Arial Unicode True Type font
-Summary(pl.UTF-8):	Font True Type Arial Unicode firmy Microsoft
+Summary:	Microsoft Arial Unicode TrueType font
+Summary(pl.UTF-8):	Font TrueType Arial Unicode firmy Microsoft
 %define		base_name		fonts-TTF-Microsoft-ArialUnicode
 %if %{with license_agreement}
 Name:		%{base_name}
@@ -34,7 +34,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		ttffontsdir	%{_fontsdir}/TTF
 
 %description
-Microsoft Arial Unicode True Type font.
+Microsoft Arial Unicode TrueType font.
 %if !%{with license_agreement}
 License issues made us not to include inherent files into this package
 by default (it probably requires MS Office license). If you want to
@@ -45,7 +45,7 @@ command:
 %endif
 
 %description -l pl.UTF-8
-Font True Type Arial Unicode firmy Microsoft.
+Font TrueType Arial Unicode firmy Microsoft.
 %if !%{with license_agreement}
 Kwestie licencji zmusiły nas do niedołączania do tego pakietu istotnych
 plików (prawdopodobnie wymaga licencji na MS Office). Jeśli chcesz stworzyć
