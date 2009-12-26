@@ -23,10 +23,10 @@ BuildRequires:	cabextract
 Requires:	%{_fontsdir}/TTF
 Requires(post,postun):	fontpostinst
 %else
-Source0:	license-installer.sh
+Source0:	http://svn.pld-linux.org/svn/license-installer/license-installer.sh
+# Source0-md5:	4fb1600353dd57fe088e0b12fb0ecac2
 Requires:	cabextract
-Requires:	rpm-build-tools
-Requires:	wget
+Requires:	rpm-build-tools >= 4.4.35
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -71,6 +71,7 @@ sed -e '
 	s-@VERSION@-%{version}-g
 	s-@RELEASE@-%{release}-g
 	s,@SPECFILE@,%{_datadir}/%{base_name}/%{base_name}.spec,g
+	s,@DATADIR@,%{_datadir}/%{base_name},g
 ' %{SOURCE0} > $RPM_BUILD_ROOT%{_bindir}/%{base_name}.install
 
 install %{_specdir}/%{base_name}.spec $RPM_BUILD_ROOT%{_datadir}/%{base_name}
