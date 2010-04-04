@@ -11,7 +11,7 @@ Name:		%{base_name}
 Name:		%{base_name}-installer
 %endif
 Version:	1.0
-Release:	2%{?with_license_agreement:wla}
+Release:	3%{?with_license_agreement:wla}
 # part of MS Office - may require Office license to use
 License:	?
 Group:		Fonts
@@ -24,9 +24,10 @@ Requires:	%{_fontsdir}/TTF
 Requires(post,postun):	fontpostinst
 %else
 Source0:	http://svn.pld-linux.org/svn/license-installer/license-installer.sh
-# Source0-md5:	4fb1600353dd57fe088e0b12fb0ecac2
+# Source0-md5:	329c25f457fea66ec502b7ef70cb9ede
 Requires:	cabextract
-Requires:	rpm-build-tools >= 4.4.35
+Requires:	rpm-build-tools >= 4.4.37
+Requires:	rpm-build-macros >= 1.544
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
