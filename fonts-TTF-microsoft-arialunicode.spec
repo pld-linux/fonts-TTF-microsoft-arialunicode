@@ -2,16 +2,17 @@
 # Conditional build:
 %bcond_with	license_agreement	# generates package (may require MS Office license?)
 #
+%define		base_name		fonts-TTF-Microsoft-ArialUnicode
+%define		rel			3
 Summary:	Microsoft Arial Unicode TrueType font
 Summary(pl.UTF-8):	Font TrueType Arial Unicode firmy Microsoft
-%define		base_name		fonts-TTF-Microsoft-ArialUnicode
 %if %{with license_agreement}
 Name:		%{base_name}
 %else
 Name:		%{base_name}-installer
 %endif
 Version:	1.0
-Release:	3%{?with_license_agreement:wla}
+Release:	%{rel}%{?with_license_agreement:wla}
 # part of MS Office - may require Office license to use
 License:	?
 Group:		Fonts
