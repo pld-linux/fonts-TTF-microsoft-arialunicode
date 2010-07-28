@@ -21,14 +21,14 @@ Group:		Fonts
 Source0:	http://orwell.ru/download/aruniupd.exe
 # NoSource0-md5: 1bef548eb449a0b24ad1c0b8e9d5f2ba
 BuildRequires:	cabextract
-Requires:	%{_fontsdir}/TTF
 Requires(post,postun):	fontpostinst
+Requires:	%{_fontsdir}/TTF
 %else
 Source0:	http://svn.pld-linux.org/svn/license-installer/license-installer.sh
 # Source0-md5:	329c25f457fea66ec502b7ef70cb9ede
 Requires:	cabextract
 Requires:	rpm-build-tools >= 4.4.37
-Requires:	rpm-build-macros >= 1.544
+Requires:	rpmbuild(macros) >= 1.544
 %endif
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
